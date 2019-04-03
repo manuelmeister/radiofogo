@@ -1,0 +1,7 @@
+# Deny access to files with extensions .ini, .psd, .log, .sh
+<FilesMatch "credetials\.json$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+SetEnv GOOGLE_APPLICATION_CREDENTIALS auth/credentials.json
