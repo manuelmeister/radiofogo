@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Radio Fogo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+<header class="bg-dark text-white">
+    <h1 class="container py-4">Fogo Machina</h1>
+</header>
+<main class="container">
+    <section class="card-container row">
+        <form class="col-12" action="index.php" method="post">
+            <div class="card mb-4">
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label>
+                            Titel
+                        </label>
+                        <input type="text" name="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Text
+                        </label>
+                        <textarea name="input" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-auto"><input type="password" name="daswort" class="form-control"></div><div class="col-auto"><input class="btn btn-success" type="submit" name="submit" value="Absenden"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% for key , item in audiofiles %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card mb-4 containerimg">
+                    <div class="card-body">
+                        <h2 class="card-title h3">{{ item.title }}</h2>
+                        <audio controls class="card-img">
+                            <source src="output/{{ key }}/audio.mp3">
+                        </audio>
+                        <br>
+                        <p title="{{ item.text }}">{{ item.text|length > 50 ? item.text|slice(0, 50) ~ '...' : item.text }}</p>
+                        <time class="font-italic" datetime="{{ key }}">{{ item.datetime | date }}</time>
+                    </div>
+                </article>
+            </div>
+        {% endfor %}
+    </section>
+    </div>
+
+</main>
+<footer class="bg-dark text-white">
+    <p class="container py-2">© ZHdK</p>
+</footer>
+</body>
+</html>
